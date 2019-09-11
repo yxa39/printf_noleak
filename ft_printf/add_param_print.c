@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:01:49 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/10 14:00:22 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/11 09:29:32 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	add_zero_2(t_param *param, char **tmp, int width, int len)
 		param->str[i++] = '0';
 	while ((*tmp)[j])
 		param->str[i++] = (*tmp)[j++];
-	free(*tmp);
 }
 
 void	add_zero(t_param *param, int width, char format)
@@ -57,6 +56,7 @@ void	add_zero(t_param *param, int width, char format)
 			*(param->flag_field + 5) == 1)
 		if (width - len > 0)
 			add_zero_2(param, &tmp, width, len);
+	free(tmp);
 }
 
 int		add_sign_prefix_2(t_param *param, char format, int i)
@@ -98,4 +98,5 @@ void	add_sign_prefix(t_param *param, char format)
 	while (tmp[j])
 		param->str[i++] = tmp[j++];
 	param->str[i] = '\0';
+	free(tmp);
 }

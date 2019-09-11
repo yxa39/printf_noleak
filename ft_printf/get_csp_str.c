@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:05:06 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/10 14:09:21 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/11 09:54:05 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	get_s_str(char *str, t_param *param)
 {
 	int		len;
 	int		i;
+	char	*tmp;
+	int		j;
 
-	if (str == 0)
-		str = ft_strdup("(null)");
-	len = (int)ft_strlen(str);
+	j = 0;
+	tmp = str == 0 ? ft_strdup("(null)") : ft_strdup(str);
+	len = (int)ft_strlen(tmp);
 	if (param->precision < len && *(param->flag_field + 5) == 1)
 	{
 		len = param->precision;
@@ -27,20 +29,20 @@ void	get_s_str(char *str, t_param *param)
 		param->str = ft_strnew(len);
 		i = 0;
 		while (param->precision-- > 0)
-			param->str[i++] = *str++;
+			param->str[i++] = tmp[j++];
 		param->str[i] = '\0';
 	}
 	else
-		param->str = ft_strdup(str);
+		param->str = ft_strdup(tmp);
 	if (*(param->flag_field + 3) == 1)
 		add_zero(param, param->width, 's');
+	free(tmp);
 }
 
 void	get_c_str(char ch, t_param *param)
 {
 	param->precision = 0;
 	param->c = (char)ch;
-	param->str = ft_strnew(0);
 	add_zero(param, param->width, 'c');
 }
 

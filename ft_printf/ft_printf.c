@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 10:00:07 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/10 13:31:50 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/11 10:29:11 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print(t_param *param, char format)
 int		what_to_print(char **format, va_list *ap)
 {
 	t_param	*param;
+	int		len;
 
 	param = (t_param *)malloc(sizeof(t_param));
 	get_param(format, param);
@@ -75,7 +76,9 @@ int		what_to_print(char **format, va_list *ap)
 	}
 	prep_print(format, param);
 	free(param->str);
-	return (param->len);
+	len = param->len;
+	free(param);
+	return (len);
 }
 
 int		ft_printf(char *format, ...)

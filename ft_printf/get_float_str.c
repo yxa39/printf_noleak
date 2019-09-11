@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:06:49 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/09 10:53:10 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/11 11:19:39 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ char		*get_decimal(long double num, int precision)
 	return (str);
 }
 
-long double	convert_float(va_list *ap, t_param *param)
-{
-	if (param->len_field == 5)
-		return (va_arg(*ap, long double));
-	else
-		return ((long double)va_arg(*ap, double));
-}
-
 long double	rounding(long double num, t_param *param)
 {
 	long double	tens;
@@ -62,17 +54,10 @@ long double	rounding(long double num, t_param *param)
 	return (num);
 }
 
-void		get_float(va_list *ap, t_param *param)
+void		get_float_2(long double num, t_param *param)
 {
-	long double	num;
+	char	*tmp;
 
-	num = convert_float(ap, param);
-	if (*(param->flag_field + 5) == 0)
-		param->precision = 6;
-	if (num > -1.0 && num < 0.0)
-		*(param->flag_field + 6) = 1;
-	num = rounding(num, param);
-	param->str = ft_llitoa((long long int)num);
 	if (param->precision != 0)
 		param->str = ft_strcat(param->str, get_decimal((long double)(num -
 						(long long int)num), param->precision));
@@ -81,11 +66,32 @@ void		get_float(va_list *ap, t_param *param)
 		param->str = ft_strcat(param->str, ".");
 	if (param->str[0] == '-')
 	{
-		param->str = ft_strdup(++param->str);
+		tmp = ft_strdup(param->str + 1);
+		free(param->str);
+		param->str = ft_strdup(tmp);
+		free(tmp);
 		*(param->flag_field + 6) = 1;
 		*(param->flag_field + 2) = 0;
 		*(param->flag_field + 1) = 0;
 	}
+}
+
+void		get_float(va_list *ap, t_param *param)
+{
+	long double	num;
+
+	if (param->len_field == 5)
+		num = (va_arg(*ap, long double));
+	else
+		num =  (long double)va_arg(*ap, double);
+	if (*(param->flag_field + 5) == 0)
+		param->precision = 6;
+	if (num > -1.0 && num < 0.0)
+		*(param->flag_field + 6) = 1;
+	num = rounding(num, param);
+	free(param->str);
+	param->str = ft_llitoa((long long int)num);
+	get_float_2(num, param);
 	if (*(param->flag_field + 3) == 1)
 		add_zero(param, param->width, 'f');
 	add_sign_prefix(param, 'f');

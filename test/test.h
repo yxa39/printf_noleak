@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/05 15:07:28 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/11 10:17:06 by yxie             ###   ########.fr       */
+/*   Created: 2019/07/15 10:22:21 by yxie              #+#    #+#             */
+/*   Updated: 2019/07/18 12:44:08 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef TEST_H
+# define TEST_H
+#include<unistd.h>
 
-char	*ft_strnew(size_t size)
+typedef struct		s_list
 {
-	char	*pointer;
+	void			*content;
+}					t_list;
 
-	pointer = (char *)ft_memalloc(size + 1);
-	return (pointer);
-}
+int	ft_printf(const char * restrict format, ...);
+#endif

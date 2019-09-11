@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 15:38:10 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/09 11:14:20 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/11 10:38:36 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void					get_ouxx_str(unsigned long long int num,
 void					get_csp(char format, va_list *ap, t_param *param);
 void					get_diouxx(char format, va_list *ap, t_param *param);
 char					*get_decimal(long double num, int precision);
-long double				convert_float(va_list *ap, t_param *param);
 long double				rounding(long double num, t_param *param);
 void					get_float(va_list *ap, t_param *param);
 void					get_percent(t_param *param);
