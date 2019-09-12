@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:41:53 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/11 10:29:16 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/12 09:44:29 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	get_di_str_2(long long int num, t_param *param)
 {
+	free(param->str);
 	if (num + 1 == -9223372036854775807)
 		param->str = ft_strdup(MIN);
 	else if (num - 1 == 9223372036854775806)
 		param->str = ft_strdup(MAX);
 	else if (num == 0 && *(param->flag_field + 5) == 1 && param->precision == 0)
-	{
-		free(param->str);
 		param->str = ft_strnew(0);
-	}
 	else
 		param->str = ft_llitoa(num);
 }
@@ -74,6 +72,7 @@ void	get_ouxx_str(unsigned long long int num,
 	int	base;
 
 	base = get_base(format);
+	free(param->str);
 	param->str = ft_un_llitoa(num, base, format);
 	if (ft_strcmp(param->str, "0") == 0)
 		*(param->flag_field + 4) = 0;

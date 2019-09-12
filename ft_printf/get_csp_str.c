@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:05:06 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/11 09:54:05 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/12 10:04:27 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	get_s_str(char *str, t_param *param)
 	j = 0;
 	tmp = str == 0 ? ft_strdup("(null)") : ft_strdup(str);
 	len = (int)ft_strlen(tmp);
+	free(param->str);
 	if (param->precision < len && *(param->flag_field + 5) == 1)
 	{
 		len = param->precision;
-		free(param->str);
 		param->str = ft_strnew(len);
 		i = 0;
 		while (param->precision-- > 0)

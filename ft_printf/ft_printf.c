@@ -6,7 +6,7 @@
 /*   By: yxie <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 10:00:07 by yxie              #+#    #+#             */
-/*   Updated: 2019/09/11 10:29:11 by yxie             ###   ########.fr       */
+/*   Updated: 2019/09/12 11:27:59 by yxie             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ void	print(t_param *param, char format)
 		while (param->width-- - int_len > 0)
 			ft_putchar(' ');
 	}
+}
+
+void	get_percent(t_param *param)
+{
+	free(param->str);
+	param->str = ft_strnew(1);
+	param->str[0] = '%';
+	add_zero(param, param->width, '%');
 }
 
 int		what_to_print(char **format, va_list *ap)

@@ -6,14 +6,14 @@
 #    By: yxie <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/15 10:11:06 by yxie              #+#    #+#              #
-#    Updated: 2019/07/15 12:37:47 by yxie             ###   ########.fr        #
+#    Updated: 2019/09/12 09:57:50 by yxie             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = test
 
 CC = gcc
-CC_FLAGS = -Wall -Wextra -Werror
+CC_FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LFT_FLAGS = -L $(LFT_PATH) -lftprintf
 
 LFT_PATH = .././
